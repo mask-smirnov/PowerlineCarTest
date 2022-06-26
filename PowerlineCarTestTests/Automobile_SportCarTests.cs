@@ -12,6 +12,25 @@ namespace PowerlineCarTest.Tests
     public class Automobile_SportCarTests
     {
         [TestMethod()]
+        public void new_zeroes_fail()
+        {
+            Automobile_SportCar sportCar = new Automobile_SportCar(_avgFuelConsumption: 0.1M, _fuelTankSize: 50M, _avgSpeed: 0);
+
+            string exceptionText = "";
+            try
+            {
+                decimal maxDistance = sportCar.maxDistance();
+            }
+            catch (Exception ex)
+            {
+                exceptionText = ex.Message;
+            }
+
+            Assert.AreEqual(exceptionText, "Не указана средняя скорость");
+        }
+
+        
+        [TestMethod()]
         public void maxDistanceFullTank_50liters_500km()
         {
             Automobile_SportCar sportCar = Automobile_SportCarTests.constructTestCar();
