@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PowerlineCarTest
 {
-    internal class Automobile_PassengerCar : Automobile
+    public class Automobile_PassengerCar : Automobile
     {
         public static decimal distanceLossPerPassanger = 6; //процент потерь запаса хода
         public Automobile_PassengerCar(decimal _avgFuelConsumption, decimal _fuelTankSize, decimal _avgSpeed) : base(_avgFuelConsumption, _fuelTankSize, _avgSpeed)
