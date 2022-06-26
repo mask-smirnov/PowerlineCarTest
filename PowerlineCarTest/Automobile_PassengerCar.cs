@@ -23,7 +23,24 @@ namespace PowerlineCarTest
 
             return ret * (decimal)Math.Pow((double)(1 - distanceLossPerPassanger / 100), numberOfPassengers);
         }
+        public TravelTimeCalculationResult calcTravelTime(decimal fuelOnHand, decimal distance, int numberOfPassengers)
+        {
+            //сначала вызываем базовую проверку. Таким образом мы различаем нехватку топлива в принципе и нехватку топлива при заданном количестве пассажиров
+            TravelTimeCalculationResult ret = base.calcTravelTime(fuelOnHand, distance); 
 
+            if (!ret.Success)
+                return ret;
+            else
+            {
+                if (this.maxDistance(fuelOnHand, numberOfPassengers) < distance)
+                    return new TravelTimeCalculationResult(_success: false,
+                                                            _travelTime: 0,
+                                                            _failReason: "Недостаточно топлива при таком количестве пассажиров");
+
+                return new TravelTimeCalculationResult(_success: true,
+                                                        _travelTime: distance / AvgSpeed);
+            }
+        }
 
     }
 }

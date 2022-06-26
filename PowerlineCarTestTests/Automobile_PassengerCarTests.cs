@@ -12,7 +12,7 @@ namespace PowerlineCarTest.Tests
     public class Automobile_PassengerCarTests
     {
         [TestMethod()]
-        public void maxDistance_fullTank_distance1000()
+        public void maxDistance_fullTank0passengers_distance1000()
         {
             Automobile_PassengerCar passengerCar = Automobile_PassengerCarTests.constructTestCar();
 
@@ -21,7 +21,17 @@ namespace PowerlineCarTest.Tests
             Assert.AreEqual(maxDistance, 1000);
         }
         [TestMethod()]
-        public void maxDistance_5liter_distance100()
+        public void maxDistance_fullTank1passenger_distance940()
+        {
+            Automobile_PassengerCar passengerCar = Automobile_PassengerCarTests.constructTestCar();
+
+            decimal maxDistance = passengerCar.maxDistance(numberOfPassengers: 1);
+
+            Assert.AreEqual(maxDistance, 940);
+        }
+
+        [TestMethod()]
+        public void maxDistance_5liter0passengers_distance100()
         {
             Automobile_PassengerCar passengerCar = Automobile_PassengerCarTests.constructTestCar();
 
@@ -30,7 +40,17 @@ namespace PowerlineCarTest.Tests
             Assert.AreEqual(maxDistance, 100);
         }
         [TestMethod()]
-        public void travelTime_1liter1000km_fail()
+        public void maxDistance_5liter1passenger_distance94()
+        {
+            Automobile_PassengerCar passengerCar = Automobile_PassengerCarTests.constructTestCar();
+
+            decimal maxDistance = passengerCar.maxDistance(fuelOnHand: 5, numberOfPassengers: 1);
+
+            Assert.AreEqual(maxDistance, 94);
+        }
+
+        [TestMethod()]
+        public void travelTime_1liter1000km0passengers_fail()
         {
             Automobile_PassengerCar passengerCar = Automobile_PassengerCarTests.constructTestCar();
 
@@ -39,7 +59,7 @@ namespace PowerlineCarTest.Tests
             Assert.AreEqual(calcResult.FailReason, "Недостаточно топлива");
         }
         [TestMethod()]
-        public void travelTime_5liter100km_2h()
+        public void travelTime_5liter100km0passengers_2h()
         {
             Automobile_PassengerCar passengerCar = Automobile_PassengerCarTests.constructTestCar();
 
@@ -47,8 +67,23 @@ namespace PowerlineCarTest.Tests
 
             Assert.AreEqual(calcResult.TravelTime, 2);
         }
+        [TestMethod()]
+        public void travelTime_5liter100km3passengers_fail()
+        {
+            Automobile_PassengerCar passengerCar = Automobile_PassengerCarTests.constructTestCar();
 
+            TravelTimeCalculationResult calcResult = passengerCar.calcTravelTime(fuelOnHand: 5, distance: 100, numberOfPassengers: 3);
 
+            Assert.AreEqual(calcResult.FailReason, "Недостаточно топлива при таком количестве пассажиров");
+        }
+        public void travelTime_10liter100km3passengers_2h()
+        {
+            Automobile_PassengerCar passengerCar = Automobile_PassengerCarTests.constructTestCar();
+
+            TravelTimeCalculationResult calcResult = passengerCar.calcTravelTime(fuelOnHand: 10, distance: 100, numberOfPassengers: 3);
+
+            Assert.AreEqual(calcResult.TravelTime, 2);
+        }
 
         public static Automobile_PassengerCar constructTestCar()
         {
