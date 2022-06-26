@@ -9,21 +9,24 @@ namespace PowerlineCarTest
     public class Automobile_PassengerCar : Automobile
     {
         public static decimal distanceLossPerPassanger = 6; //процент потерь запаса хода
-        public Automobile_PassengerCar(decimal _avgFuelConsumption, decimal _fuelTankSize, decimal _avgSpeed) : base(_avgFuelConsumption, _fuelTankSize, _avgSpeed)
+        public int numberOfPassengers { get; set; }
+
+        public Automobile_PassengerCar(decimal _avgFuelConsumption, decimal _fuelTankSize, decimal _avgSpeed, int _numberOfPassengers) : base(_avgFuelConsumption, _fuelTankSize, _avgSpeed)
         {
             this.Type = AutomobileType.passenger;
+            this.numberOfPassengers = _numberOfPassengers;
         }
-        public decimal maxDistanceFullTank(int numberOfPassengers)
+        public decimal maxDistanceFullTank()
         {
-            return this.maxDistance(FuelTankSize, numberOfPassengers);
+            return this.maxDistance(FuelTankSize);
         }
-        public decimal maxDistance(decimal fuelOnHand, int numberOfPassengers)
+        public new decimal maxDistance(decimal fuelOnHand)
         {
             decimal ret = base.maxDistance(fuelOnHand);
 
             return ret * (decimal)Math.Pow((double)(1 - distanceLossPerPassanger / 100), numberOfPassengers);
         }
-        public TravelTimeCalculationResult calcTravelTime(decimal fuelOnHand, decimal distance, int numberOfPassengers)
+        public new TravelTimeCalculationResult calcTravelTime(decimal fuelOnHand, decimal distance)
         {
             //сначала вызываем базовую проверку. Таким образом мы различаем нехватку топлива в принципе и нехватку топлива при заданном количестве пассажиров
             TravelTimeCalculationResult ret = base.calcTravelTime(fuelOnHand, distance); 
@@ -32,7 +35,7 @@ namespace PowerlineCarTest
                 return ret;
             else
             {
-                if (this.maxDistance(fuelOnHand, numberOfPassengers) < distance)
+                if (this.maxDistance(fuelOnHand) < distance)
                     return new TravelTimeCalculationResult(_success: false,
                                                             _travelTime: 0,
                                                             _failReason: "Недостаточно топлива при таком количестве пассажиров");
