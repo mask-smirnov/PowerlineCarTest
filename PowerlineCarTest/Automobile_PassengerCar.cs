@@ -13,7 +13,7 @@ namespace PowerlineCarTest
         {
             this.Type = AutomobileType.passenger;
         }
-        public decimal maxDistance(int numberOfPassengers)
+        public decimal maxDistanceFullTank(int numberOfPassengers)
         {
             return this.maxDistance(FuelTankSize, numberOfPassengers);
         }

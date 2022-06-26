@@ -12,11 +12,11 @@ namespace PowerlineCarTest.Tests
     public class Automobile_SportCarTests
     {
         [TestMethod()]
-        public void maxDistance_FullTank50liters_500km()
+        public void maxDistanceFullTank_50liters_500km()
         {
             Automobile_SportCar sportCar = Automobile_SportCarTests.constructTestCar();
 
-            decimal maxDistance = sportCar.maxDistance();
+            decimal maxDistance = sportCar.maxDistanceFullTank();
 
             Assert.AreEqual(maxDistance, 500);
         }

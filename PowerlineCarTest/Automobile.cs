@@ -34,7 +34,7 @@ namespace PowerlineCarTest
                                                     _travelTime: distance / AvgSpeed);
         }
 
-        public decimal maxDistance()
+        public decimal maxDistanceFullTank()
         {
             return this.maxDistance(FuelTankSize);
         }
