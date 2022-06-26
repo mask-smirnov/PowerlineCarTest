@@ -18,7 +18,7 @@ namespace PowerlineCarTest.Tests
 
             decimal maxDistance = truck.maxDistance();
 
-            Assert.AreEqual(maxDistance, 500);
+            Assert.AreEqual(500, maxDistance);
         }
         [TestMethod()]
         public void maxDistanceFullTank_200kg_distance480()
@@ -27,7 +27,7 @@ namespace PowerlineCarTest.Tests
 
             decimal maxDistance = truck.maxDistance();
 
-            Assert.AreEqual(maxDistance, 480M);
+            Assert.AreEqual(480, maxDistance);
         }
 
         [TestMethod()]
@@ -37,7 +37,7 @@ namespace PowerlineCarTest.Tests
 
             decimal maxDistance = truck.maxDistance(fuelOnHand: 20);
 
-            Assert.AreEqual(maxDistance, 100);
+            Assert.AreEqual(100, maxDistance);
         }
         [TestMethod()]
         public void maxDistance_20liter200kg_distance96()
@@ -46,7 +46,7 @@ namespace PowerlineCarTest.Tests
 
             decimal maxDistance = truck.maxDistance(fuelOnHand: 20);
 
-            Assert.AreEqual(maxDistance, 100M * 0.96M);
+            Assert.AreEqual(100M * 0.96M, maxDistance);
         }
         [TestMethod()]
         public void maxDistance_20liter600kg_distance96()
@@ -55,7 +55,7 @@ namespace PowerlineCarTest.Tests
 
             decimal maxDistance = truck.maxDistance(fuelOnHand: 20);
 
-            Assert.AreEqual(maxDistance, 100M * 0.96M * 0.96M * 0.96M);
+            Assert.AreEqual(100M * 0.96M * 0.96M * 0.96M, maxDistance);
         }
 
         [TestMethod()]
@@ -65,7 +65,7 @@ namespace PowerlineCarTest.Tests
 
             TravelTimeCalculationResult calcResult = truck.calcTravelTime(fuelOnHand: 1, distance: 1000);
 
-            Assert.AreEqual(calcResult.FailReason, "Недостаточно топлива");
+            Assert.AreEqual("Недостаточно топлива", calcResult.FailReason);
         }
         [TestMethod()]
         public void travelTime_20liter100km0kg_2h()
@@ -74,7 +74,7 @@ namespace PowerlineCarTest.Tests
 
             TravelTimeCalculationResult calcResult = truck.calcTravelTime(fuelOnHand: 20, distance: 100);
 
-            Assert.AreEqual(calcResult.TravelTime, 2);
+            Assert.AreEqual(2, calcResult.TravelTime);
         }
         [TestMethod()]
         public void travelTime_20liter100km1000000kg_fail()
@@ -83,7 +83,7 @@ namespace PowerlineCarTest.Tests
 
             TravelTimeCalculationResult calcResult = truck.calcTravelTime(fuelOnHand: 20, distance: 100);
 
-            Assert.AreEqual(calcResult.FailReason, "Недостаточно топлива");
+            Assert.AreEqual("Недостаточно топлива", calcResult.FailReason);
         }
         [TestMethod()]
         public void travelTime_100liter100km200kg_2h()
@@ -92,7 +92,7 @@ namespace PowerlineCarTest.Tests
 
             TravelTimeCalculationResult calcResult = truck.calcTravelTime(fuelOnHand: 100, distance: 100);
 
-            Assert.AreEqual(calcResult.TravelTime, 2);
+            Assert.AreEqual(2, calcResult.TravelTime);
         }
 
         public static Automobile_Truck constructTestCar(decimal _loadWeight)

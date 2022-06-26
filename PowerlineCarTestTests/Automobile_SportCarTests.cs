@@ -26,7 +26,7 @@ namespace PowerlineCarTest.Tests
                 exceptionText = ex.Message;
             }
 
-            Assert.AreEqual(exceptionText, "Не указана средняя скорость");
+            Assert.AreEqual("Не указана средняя скорость", exceptionText);
         }
 
         
@@ -37,7 +37,7 @@ namespace PowerlineCarTest.Tests
 
             decimal maxDistance = sportCar.maxDistance();
 
-            Assert.AreEqual(maxDistance, 500);
+            Assert.AreEqual(500, maxDistance);
         }
         [TestMethod()]
         public void maxDistance_50liters_500km()
@@ -46,7 +46,7 @@ namespace PowerlineCarTest.Tests
 
             decimal maxDistance = sportCar.maxDistance(fuelOnHand: 50);
 
-            Assert.AreEqual(maxDistance, 500);
+            Assert.AreEqual(500, maxDistance);
         }
         [TestMethod()]
         public void travelTime_0liters_fail()
@@ -55,7 +55,7 @@ namespace PowerlineCarTest.Tests
 
             TravelTimeCalculationResult calcResult = sportCar.calcTravelTime(fuelOnHand: 0, distance: 100);
 
-            Assert.AreEqual(calcResult.Success, false);
+            Assert.AreEqual(false, calcResult.Success);
         }
         [TestMethod()]
         public void travelTime_50liters100km_1h()
@@ -64,7 +64,7 @@ namespace PowerlineCarTest.Tests
 
             TravelTimeCalculationResult calcResult = sportCar.calcTravelTime(fuelOnHand: 50, distance: 100);
 
-            Assert.AreEqual(calcResult.TravelTime, 1);
+            Assert.AreEqual(1, calcResult.TravelTime);
         }
         public static Automobile_SportCar constructTestCar()
         {
