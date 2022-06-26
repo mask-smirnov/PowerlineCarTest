@@ -34,11 +34,11 @@ namespace PowerlineCarTest
                                                     _travelTime: distance / AvgSpeed);
         }
 
-        public decimal maxDistanceFullTank()
+        public decimal maxDistance()
         {
-            return this.maxDistance(FuelTankSize);
+            return maxDistance(FuelTankSize);
         }
-        public decimal maxDistance(decimal fuelOnHand)
+        public virtual decimal maxDistance(decimal fuelOnHand)
         {
             this.validateParameters();
 

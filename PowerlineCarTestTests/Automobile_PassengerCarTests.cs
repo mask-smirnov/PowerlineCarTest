@@ -16,7 +16,7 @@ namespace PowerlineCarTest.Tests
         {
             Automobile_PassengerCar passengerCar = Automobile_PassengerCarTests.constructTestCar(_numberOfPassengers: 0);
 
-            decimal maxDistance = passengerCar.maxDistanceFullTank();
+            decimal maxDistance = passengerCar.maxDistance();
 
             Assert.AreEqual(maxDistance, 1000);
         }
@@ -25,7 +25,7 @@ namespace PowerlineCarTest.Tests
         {
             Automobile_PassengerCar passengerCar = Automobile_PassengerCarTests.constructTestCar(_numberOfPassengers: 1);
 
-            decimal maxDistance = passengerCar.maxDistanceFullTank();
+            decimal maxDistance = passengerCar.maxDistance();
 
             Assert.AreEqual(maxDistance, 940);
         }
@@ -74,7 +74,7 @@ namespace PowerlineCarTest.Tests
 
             TravelTimeCalculationResult calcResult = passengerCar.calcTravelTime(fuelOnHand: 5, distance: 100);
 
-            Assert.AreEqual(calcResult.FailReason, "Недостаточно топлива при таком количестве пассажиров");
+            Assert.AreEqual(calcResult.FailReason, "Недостаточно топлива");
         }
         [TestMethod()]
         public void travelTime_10liter100km3passengers_2h()

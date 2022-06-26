@@ -2,8 +2,8 @@
 
 Automobile_Truck truck = new Automobile_Truck(_avgFuelConsumption: 0.2M, _fuelTankSize: 100M, _avgSpeed: 50M, _loadWeight: 100);
 
-Console.WriteLine("Maxumum distance on full tank with 100 kg load: {0} km", truck.maxDistanceFullTank());
-Console.WriteLine("Maxumum distance on 10 liters with 100 kg load: {0} km", truck.maxDistance(10));
+Console.WriteLine("Maxumum distance on full tank with 100 kg load: {0} km", truck.maxDistance());
+Console.WriteLine("Maxumum distance on 10 liters with 100 kg load: {0} km", truck.maxDistance(fuelOnHand: 10));
 
 TravelTimeCalculationResult ttcr = truck.calcTravelTime(fuelOnHand: 10, distance: 100);
 

@@ -16,7 +16,7 @@ namespace PowerlineCarTest.Tests
         {
             Automobile_SportCar sportCar = Automobile_SportCarTests.constructTestCar();
 
-            decimal maxDistance = sportCar.maxDistanceFullTank();
+            decimal maxDistance = sportCar.maxDistance();
 
             Assert.AreEqual(maxDistance, 500);
         }

@@ -19,34 +19,11 @@ namespace PowerlineCarTest
             this.Type = AutomobileType.truck;
             this.loadWeight = _loadWeight;
         }
-        public decimal maxDistanceFullTank()
-        {
-            return this.maxDistance(FuelTankSize);
-        }
-        public new decimal maxDistance(decimal fuelOnHand)
+        public override decimal maxDistance(decimal fuelOnHand)
         {
             decimal ret = base.maxDistance(fuelOnHand);
 
             return ret * (decimal) Math.Pow((double)(1M - distanceLossPerUnit / 100M), (double)(loadWeight / weightUnit));
         }
-        public new TravelTimeCalculationResult calcTravelTime(decimal fuelOnHand, decimal distance)
-        {
-            //сначала вызываем базовую проверку. Таким образом мы различаем нехватку топлива в принципе и нехватку топлива при заданной массе груза
-            TravelTimeCalculationResult ret = base.calcTravelTime(fuelOnHand, distance);
-
-            if (!ret.Success)
-                return ret;
-            else
-            {
-                if (this.maxDistance(fuelOnHand) < distance)
-                    return new TravelTimeCalculationResult(_success: false,
-                                                            _travelTime: 0,
-                                                            _failReason: "Недостаточно топлива при такой массе груза");
-
-                return new TravelTimeCalculationResult(_success: true,
-                                                        _travelTime: distance / AvgSpeed);
-            }
-        }
-
     }
 }
